@@ -19,7 +19,7 @@ jobs:
           #work_in_root_file_dir: true
 
       - name: Upload PDF to workflow tab
-uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v2
         with:
         name: build PDF
         path: docs/notes/main.pdf
