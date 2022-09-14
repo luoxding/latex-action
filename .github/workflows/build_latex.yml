@@ -1,0 +1,26 @@
+name: Build LaTeX document
+on: [push]
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v2
+        with:
+          extra_system_packages: "font-noto font-noto-cjk font-noto-cjk-extra"
+          extra_fonts: |
+            ./assets/fonts/lxgw-wenkai-v1.240/*.ttf
+          root_file: main.tex
+          working_directory: ./docs/notes
+          latexmk_use_xelatex: true
+          latexmk_shell_escape: true
+          #work_in_root_file_dir: true
+
+      - name: Upload PDF to workflow tab
+uses: actions/upload-artifact@v2
+        with:
+        name: build PDF
+        path: docs/notes/main.pdf
+        retention-days: 1
