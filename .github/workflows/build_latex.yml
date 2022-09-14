@@ -18,9 +18,19 @@ jobs:
           latexmk_shell_escape: true
           #work_in_root_file_dir: true
 
-      - name: Upload PDF to workflow tab
+      - name: Consolidate pdfs
+        run: mkdir -p build/ && cp docs/notes/main.pdf build/
+
+      - name: Upload pdf artifact
         uses: actions/upload-artifact@v2
         with:
-          name: build PDF
-          path: docs/notes/main.pdf
+          name: build_results
+          path: build
           retention-days: 1
+
+      - uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: pdfs
+          folder: build
+          ssh-key: "${{ secrets.DEPLOY_KEY }}"
+
