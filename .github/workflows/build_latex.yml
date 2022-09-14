@@ -19,7 +19,7 @@ jobs:
           #work_in_root_file_dir: true
 
       - name: Consolidate pdfs
-        run: mkdir -p build/ && cp docs/notes/main.pdf build/
+        run: mkdir -p build/ && cp ./docs/notes/main.pdf build/
 
       - name: Upload pdf artifact
         uses: actions/upload-artifact@v2
