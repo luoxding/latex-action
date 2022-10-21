@@ -1,4 +1,6 @@
 ## Core latex/pdflatex auxiliary files:
+#排除例外
+./docs/except/
 *.aux
 *.lof
 *.log
